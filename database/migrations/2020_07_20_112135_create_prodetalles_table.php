@@ -15,11 +15,12 @@ class CreateProdetallesTable extends Migration
     {
         Schema::create('prodetalles', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->string('slug')->unique();
-            $table->string('especificaion')->nullable();
-            $table->string('extra')->nullable();
-            $table->boolean('estado')->default(1);
+            $table->string('entrada')->nullable();
+            $table->string('sopa')->nullable();
+            $table->string('segundo')->nullable();
+            $table->string('postre')->nullable();
+            $table->string('refresco')->nullable();
+            $table->text('especificaion');
             $table->timestamps();
         });
     }

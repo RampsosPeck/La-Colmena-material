@@ -33,6 +33,7 @@
 
 <body class="profile-page">
     <div id="app">
+
         <nav class="navbar navbar-rose navbar-transparent navbar-fixed-top navbar-color-on-scroll">
             <div class="container">
                 <div class="navbar-header">
@@ -47,129 +48,58 @@
 
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="../index.html">
-                                <i class="material-icons">apps</i> Components
-                            </a>
-                        </li>
-
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="material-icons">view_day</i> Sections
+                                <i class="material-icons">view_carousel</i> Administracion
                                 <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu dropdown-with-icons">
+                                <li>
+                                    <a href="../index.html">
+                                        <i class="material-icons">group_add</i> Usuarios
+                                    </a>
+                                </li>
                                 <li>
                                     <a href="../sections.html#headers">
-                                        <i class="material-icons">dns</i> Headers
+                                        <i class="material-icons">dns</i> Categorias
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="../sections.html#features">
-                                        <i class="material-icons">build</i> Features
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../sections.html#blogs">
-                                        <i class="material-icons">list</i> Blogs
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../sections.html#teams">
-                                        <i class="material-icons">people</i> Teams
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../sections.html#projects">
-                                        <i class="material-icons">assignment</i> Projects
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../sections.html#pricing">
-                                        <i class="material-icons">monetization_on</i> Pricing
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../sections.html#testimonials">
-                                        <i class="material-icons">chat</i> Testimonials
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../sections.html#contactus">
-                                        <i class="material-icons">call</i> Contacts
-                                    </a>
-                                </li>
-
                             </ul>
                         </li>
-
+                        <li>
+                            <a href="../index.html">
+                                <i class="material-icons">shop</i> Productos
+                            </a>
+                        </li>
+                        <li>
+                            <a href="../index.html">
+                                <i class="material-icons">format_list_numbered</i> Pedidos
+                            </a>
+                        </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="material-icons">view_carousel</i> Examples
+                                <i class="material-icons">person</i> Jorge Peralta
                                 <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu dropdown-with-icons">
                                 <li>
-                                    <a href="../examples/about-us.html">
-                                        <i class="material-icons">account_balance</i> About Us
+                                    <a href="../index.html">
+                                        <i class="material-icons">contacts</i> Perfil
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="../examples/blog-post.html">
-                                        <i class="material-icons">art_track</i> Blog Post
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../examples/blog-posts.html">
-                                        <i class="material-icons">view_quilt</i> Blog Posts
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../examples/contact-us.html">
-                                        <i class="material-icons">location_on</i> Contact Us
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../examples/landing-page.html">
-                                        <i class="material-icons">view_day</i> Landing Page
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../examples/login-page.html">
-                                        <i class="material-icons">fingerprint</i> Login Page
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../examples/pricing.html">
-                                        <i class="material-icons">attach_money</i> Pricing Page
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../examples/ecommerce.html">
-                                        <i class="material-icons">shop</i> Ecommerce Page
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../examples/product-page.html">
-                                        <i class="material-icons">beach_access</i> Product Page
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../examples/profile-page.html">
-                                        <i class="material-icons">account_circle</i> Profile Page
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../examples/signup-page.html">
-                                        <i class="material-icons">person_add</i> Signup Page
+                                    <a href="../sections.html#headers">
+                                        <i class="material-icons">exit_to_app</i> salir
                                     </a>
                                 </li>
                             </ul>
                         </li>
 
                         <li>
-                            <a href="http://www.creative-tim.com/buy/material-kit-pro?ref=presentation" target="_blank" class="btn btn-white btn-simple">
-                                <i class="material-icons">shopping_cart</i> Buy Now
+                            <a href="" target="_blank" class="btn btn-rose btn-round btn-sm" data-toggle="tooltip" data-placement="bottom" title="Carrito/Compras">
+                                <img src="{{ asset('/img/secondary/cart.svg') }}" alt="pedidos" width="30" class="nav-icon" ><b>
+                                 Compras</b>
+                                 <span class="label label-warning"> 1</span>
                             </a>
                         </li>
                     </ul>
@@ -179,7 +109,6 @@
 
 
         <div class="page-header header-filter" data-parallax="true" style="background-image: url('../img/secondary/potosi.jpg');">
-
         </div>
 
         <div class="main main-raised">
@@ -262,8 +191,10 @@
                                                 </div>
                                                 <div class="stats">
                                                     <div class="btn-group">
-                                                    <button class="btn btn-round btn-rose btn-xs"><i class="fa fa-shopping-cart" aria-hidden="true"></i> <strong> Cargar</strong>
-                                                    </button>
+                                                        <button class="btn btn-round btn-rose btn-xs">
+                                                            <strong> Añadir </strong>
+                                                            <i class="material-icons" >add_shopping_cart</i>
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -301,8 +232,10 @@
                                                 </div>
                                                 <div class="stats">
                                                     <div class="btn-group">
-                                                    <button class="btn btn-round btn-rose btn-xs"><i class="fa fa-shopping-cart" aria-hidden="true"></i> <strong> Cargar</strong>
-                                                    </button>
+                                                        <button class="btn btn-round btn-rose btn-xs">
+                                                            <strong> Añadir </strong>
+                                                            <i class="material-icons" >add_shopping_cart</i>
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -339,8 +272,10 @@
                                                 </div>
                                                 <div class="stats">
                                                     <div class="btn-group">
-                                                    <button class="btn btn-round btn-rose btn-xs"><i class="fa fa-shopping-cart" aria-hidden="true"></i> <strong> Cargar</strong>
-                                                    </button>
+                                                        <button class="btn btn-round btn-rose btn-xs">
+                                                            <strong> Añadir </strong>
+                                                            <i class="material-icons" >add_shopping_cart</i>
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -378,8 +313,10 @@
                                                 </div>
                                                 <div class="stats">
                                                     <div class="btn-group">
-                                                    <button class="btn btn-round btn-rose btn-xs"><i class="fa fa-shopping-cart" aria-hidden="true"></i> <strong> Cargar</strong>
-                                                    </button>
+                                                        <button class="btn btn-round btn-rose btn-xs">
+                                                            <strong> Añadir </strong>
+                                                            <i class="material-icons" >add_shopping_cart</i>
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -425,10 +362,10 @@
                                                         </div>
                                                         <div class="stats">
                                                             <div class="btn-group">
-                                                            <button class="btn btn-round btn-rose btn-xs">
-                                                                <strong> Añadir </strong>
-                                                                <i class="material-icons" >add_shopping_cart</i>
-                                                            </button>
+                                                                <button class="btn btn-round btn-rose btn-xs">
+                                                                    <strong> Añadir </strong>
+                                                                    <i class="material-icons" >add_shopping_cart</i>
+                                                                </button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -576,8 +513,10 @@
                                                     </div>
                                                     <div class="stats">
                                                         <div class="btn-group">
-                                                        <button class="btn btn-round btn-rose btn-xs"><i class="fa fa-shopping-cart" aria-hidden="true"></i> <strong> Cargar</strong>
-                                                        </button>
+                                                            <button class="btn btn-round btn-rose btn-xs">
+                                                                <strong> Añadir </strong>
+                                                                <i class="material-icons" >add_shopping_cart</i>
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -615,8 +554,10 @@
                                                     </div>
                                                     <div class="stats">
                                                         <div class="btn-group">
-                                                        <button class="btn btn-round btn-rose btn-xs"><i class="fa fa-shopping-cart" aria-hidden="true"></i> <strong> Cargar</strong>
-                                                        </button>
+                                                            <button class="btn btn-round btn-rose btn-xs">
+                                                                <strong> Añadir </strong>
+                                                                <i class="material-icons" >add_shopping_cart</i>
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -637,29 +578,29 @@
                 <nav class="pull-left">
                     <ul>
                         <li>
-                            <a href="http://www.creative-tim.com">
-                                Creative Tim
+                            <a href="/">
+                                SERVICIOS
                             </a>
                         </li>
                         <li>
-                            <a href="http://presentation.creative-tim.com">
-                               About Us
+                            <a href="/#about">
+                               NOSOTROS
                             </a>
                         </li>
                         <li>
-                            <a href="http://blog.creative-tim.com">
-                               Blog
+                            <a href="/#guia">
+                               GUIA
                             </a>
                         </li>
                         <li>
-                            <a href="http://www.creative-tim.com/license">
-                                Licenses
+                            <a href="/#ventajas">
+                                VENTAJAS
                             </a>
                         </li>
                     </ul>
                 </nav>
                 <div class="copyright pull-right">
-                    &copy; {{ date('Y') }}, made with <i class="fa fa-heart heart"></i> by Creative Tim
+                     {{ date('Y') }} &copy; Create By <i class="fa fa-android" aria-hidden="true"></i> Mentrax
                 </div>
             </div>
         </footer>
