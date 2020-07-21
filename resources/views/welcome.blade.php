@@ -9,13 +9,13 @@
 
     <meta name="description" content="Sistema de pedidos en linea realizado para la tienda LA COLMENA">
     <meta name="author" content="Ing. Jorge Peralta">
-    <meta name="keyword" content="Sistema de pedidos en linea, Sistema bajo plataforma web la colmena. ">
+    <meta name="keyword" content="Sistema de pedidos en linea, Sistema bajo plataforma web La colmena. ">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="shortcut icon" href="{{ asset('/img/welcome/colmena.svg') }}" />
 
-    <link href="/css/principal.css" rel="stylesheet">
 
+    <link href="{{ asset('css/principal.css') }}" rel="stylesheet">
     <!--<link href="/styles/css/bootstrap.css" rel="stylesheet">
     <link href="/styles/css/fonts.css" >
     <link href="/styles/css/style.css" rel="stylesheet">-->
@@ -72,8 +72,6 @@
               </button>
 
               <div class="rd-navbar-aside" id="rd-navbar-aside">
-
-
                 <h3 class="text-center">INGRESE AL SISTEMA</h3>
                 <!--RD Mailform-->
                 <form class="rd-form rd-mailform" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
@@ -149,9 +147,7 @@
                             @endif
                         </div>
                     </div>
-
                 </form>
-
               </div>
             </nav>
           </div>
@@ -169,7 +165,7 @@
                       <h1 data-swiper-anime='{"animation":"swiperContentRide","duration":1000,"delay":1000}' data-subtext="#1">La Colmena</h1>
                       <p class="big text-justify" data-swiper-anime='{"animation":"swiperContentRide","duration":1100,"delay":1100}'>Le ofrecemos una variedad de productos y ahora puedes realizar tus pedidos en linea. </p>
                       <p class="postitle text-center" data-swiper-anime='{"animation":"swiperContentRide","duration":1200,"delay":1200}'>
-                        <a class="button button-primary-wel" href="#">Ver Catálogo</a>
+                        <a class="button button-primary-wel" href="{{ url('catalogo') }}">Ver Catálogo</a>
                       </p>
                     </div>
                     <div class="box-round-wrap">
@@ -188,7 +184,7 @@
                       <h1 data-swiper-anime='{"animation":"swiperContentRide","duration":1000,"delay":1000}' data-subtext="250">TORTAS ESPECIALES</h1>
                       <p class="big text-justify" data-swiper-anime='{"animation":"swiperContentRide","duration":1100,"delay":1100}'>Los mejores pasteles y para todos los gustos, frescos y especiales con un decorado inolvidable.</p>
                       <p class="postitle text-center" data-swiper-anime='{"animation":"swiperContentRide","duration":1200,"delay":1200}'>
-                        <a class="button button-primary-wel" href="#">Pedir Tortas</a>
+                        <a class="button button-primary-wel" href="{{ url('catalogo') }}">Pedir Tortas</a>
                       </p>
                     </div>
                     <div class="box-round-wrap">
@@ -207,7 +203,7 @@
                       <h1 data-swiper-anime='{"animation":"swiperContentRide","duration":1000,"delay":1000}' data-subtext="100%">Comida deliciosa</h1>
                       <p class="big text-justify" data-swiper-anime='{"animation":"swiperContentRide","duration":1100,"delay":1100}'>Una variedad de platos a la carta y almuerzos para que deguste de la mejor comida más deliciosa.</p>
                       <p class="postitle text-center" data-swiper-anime='{"animation":"swiperContentRide","duration":1200,"delay":1200}'>
-                        <a class="button button-primary-wel" href="#">Pedir platos a la carta</a>
+                        <a class="button button-primary-wel" href="{{ url('catalogo') }}">Pedir platos a la carta</a>
                       </p>
                     </div>
                     <div class="box-round-wrap">
@@ -226,7 +222,7 @@
                       <h1 data-swiper-anime='{"animation":"swiperContentRide","duration":1000,"delay":1000}' data-subtext="3k">Servicio de entrega</h1>
                       <p class="big text-justify" data-swiper-anime='{"animation":"swiperContentRide","duration":1100,"delay":1100}'>Nuestros clientes confian en nosotros por deleitar su paladar más de una decada.</p>
                       <p class="postitle text-center" data-swiper-anime='{"animation":"swiperContentRide","duration":1200,"delay":1200}'>
-                          <a class="button button-primary-wel" href="#">Ver Catálogo</a>
+                          <a class="button button-primary-wel" href="{{ url('catalogo') }}">Ver Catálogo</a>
                       </p>
                     </div>
                     <div class="box-round-wrap"><img src="images/slider-04-671x671.png" alt="" width="671" height="335" data-swiper-anime='{"animation":"swiperContentFade","duration":1000,"delay":1000}'/>
@@ -262,7 +258,7 @@
                   <li>Los ingredientes más frescos para cada plato.</li>
                 </ul>
                 <div class="text-center justify-content-center pt-3">
-                    <a class="button button-primary" href="#">Ver Catálogo</a>
+                  <a class="button button-primary" href="{{ url('catalogo') }}">Ver Catálogo</a>
                 </div>
               </div>
             </div>
@@ -292,7 +288,7 @@
                 </div>
                 <p class="product-text text-justify">La mejor opción si estas buscando la comida más sabrosa fresca y a buen precio.</p>
                 <div class="cel-pro">
-                    <a class="button button-primary" href="#">Ordenar ahora.</a>
+                    <a class="button button-primary" href="{{ url('catalogo') }}">Ordenar ahora.</a>
                 </div>
 
                 <!--<div>
@@ -314,7 +310,7 @@
                 </div>
                 <p class="product-text text-justify">Las tortas más deliciosas con decoraciones inolvidables únicos a gusto del cliente.</p>
                 <div class="cel-pro">
-                    <a class="button button-primary" href="#">Ordenar ahora</a>
+                    <a class="button button-primary" href="{{ url('catalogo') }}">Ordenar ahora</a>
                 </div>
               </div>
             </div>
@@ -331,7 +327,7 @@
                 </div>
                 <p class="product-text text-justify">Le ofrecemos distintos productos desde refrescos y mucho más con un envio rápido y seguro.</p>
                 <div class="cel-pro">
-                    <a class="button button-primary" href="#">Ordenar ahora</a>
+                    <a class="button button-primary" href="{{ url('catalogo') }}">Ordenar ahora</a>
                 </div>
               </div>
             </div>
@@ -485,7 +481,7 @@
     </div>
     <div class="snackbars" id="form-output-global"></div>
 
-    <script src="/js/principal.js"></script>
+    <script src="{{ asset('js/principal.js') }}" ></script>
     <!--coded by kraken-->
   </body>
 </html>

@@ -11,6 +11,9 @@ Route::get('/', function() {
 });*/
 
 //Public routes
+Route::get('/', function () {
+    return view('welcome');
+});
 Route::get('me', 'User\MeController@getMe');
 
 // Route group for authenticated users only
@@ -18,6 +21,10 @@ Route::group(['middleware' => ['auth:api']], function(){
 	Route::post('logout', 'Auth\LoginController@logout');
 	Route::put('settings/profile', 'User\SettingsController@updateProfile');
  	Route::put('settings/password', 'User\SettingsController@updatePassword');
+
+ 	//Rutas para categoria
+ 	Route::get('categorias', 'Producto\CategoriaController@index');
+ 	Route::post('categoria/register', 'Producto\CategoriaController@store');
 
 });
 

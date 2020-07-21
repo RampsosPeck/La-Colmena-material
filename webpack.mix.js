@@ -18,6 +18,7 @@ mix.styles([
 	'resources/styles/css/style.css'
 ], 'public/css/principal.css')
 .styles([
+	'resources/styles/css/material/font-awesome.min.css',
 	'resources/styles/css/material/bootstrap.min.css',
 	'resources/styles/css/material/material-kit.css'
 ], 'public/css/frontend.css')
