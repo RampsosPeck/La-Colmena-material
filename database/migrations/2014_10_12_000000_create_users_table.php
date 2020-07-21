@@ -17,7 +17,6 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('fullname');
             $table->string('slug')->unique();
-            $table->string('cedula');
             $table->string('celular');
             $table->string('email')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
