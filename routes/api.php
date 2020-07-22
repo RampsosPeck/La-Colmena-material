@@ -10,6 +10,15 @@ Route::get('/', function() {
 	return response()->json(['message'=>'Hola mundo!'], 200);
 });*/
 
+
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
+Route::apiResources(['user' => 'API\UserController']);
+
+
+/*
 //Public routes
 Route::get('/', function () {
     return view('welcome');
@@ -38,7 +47,7 @@ Route::group(['middleware' => ['guest:api']], function(){
  	Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 });
-
+*/
 
 
 

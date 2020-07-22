@@ -14,6 +14,7 @@ require('./theme/jquery.flexisel.js');
 require('./theme/material-kit.js');
 
 window.Vue = require('vue');
+import moment from 'moment';
 import {
   Form,
   HasError,
@@ -22,6 +23,19 @@ import {
   AlertSuccess
 } from 'vform';
 
+//Sweet alet2
+import swal from 'sweetalert2'
+window.swal = swal;
+
+const toast = swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000
+});
+
+window.toast = toast;
+//Fin Sweet2
 
 window.Form = Form;
 Vue.component(HasError.name, HasError)
@@ -33,6 +47,14 @@ Vue.component(AlertSuccess.name, AlertSuccess)
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
+
+// configuracion de vue progress bar
+import VueProgressBar from 'vue-progressbar'
+Vue.use(VueProgressBar, {
+  color: 'rgb(143, 255, 199)',
+  failedColor: 'red',
+  height: '3px'
+})
 
 let routes = [
     { path: '/catalogo', component: require('./components/Dashboard.vue').default },
@@ -47,6 +69,14 @@ const router = new VueRouter({
 	mode: 'history',
 	routes
 })
+
+Vue.filter('upText', function(text){
+	//return text.toUpperCase();
+	return text.charAt(0).toUpperCase() + text.slice(1);
+});
+Vue.filter('myDate', function(created){
+	return moment(created).locale('es').format('MMMM Do YYYY, h:mm a');
+});
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

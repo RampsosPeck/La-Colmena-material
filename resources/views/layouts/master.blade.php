@@ -119,6 +119,8 @@
 
         <router-view></router-view>
 
+        <vue-progress-bar></vue-progress-bar>
+
         <footer class="footer">
             <div class="container">
                 <nav class="pull-left">

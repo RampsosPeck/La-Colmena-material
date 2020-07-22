@@ -18,7 +18,6 @@ class UserResource extends JsonResource
             'id' => $this->id,
             'fullname' => $this->fullname,
             'slug' => $this->slug,
-            'cedula' => $this->cedula,
             'celular' => $this->celular,
             $this->mergeWhen(auth()->check() && auth()->id() == $this->id, [
                 'email' => $this->email

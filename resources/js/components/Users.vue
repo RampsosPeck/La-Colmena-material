@@ -28,95 +28,22 @@
 		                        <div class="table-responsive">
 			                        <table class="table">
 			                            <thead>
-			                                <tr>
-			                                    <th class="text-center">#</th>
-			                                    <th>Name</th>
-			                                    <th>Job Position</th>
-			                                    <th>Since</th>
-			                                    <th class="text-right">Salary</th>
-			                                    <th class="text-right">Actions</th>
+			                                <tr class="almuerzo">
+			                                    <th class="text-center"><b>#</b></th>
+			                                    <th class="text-center"><b>Nombre</b></th>
+			                                    <th class="text-center"><b>Celular</b></th>
+			                                    <th class="text-center"><b>E-mail</b></th>
+			                                    <th class="text-center"><b>Creado</b></th>
+			                                    <th class="text-center"><b>Acciones</b></th>
 			                                </tr>
 			                            </thead>
 			                            <tbody>
-			                                <tr>
-			                                    <td class="text-center">1</td>
-			                                    <td>Andrew Mike</td>
-			                                    <td>Develop</td>
-			                                    <td>2013</td>
-			                                    <td class="text-right">€ 99,225</td>
-			                                    <td class="td-actions text-right">
-			                                        <button type="button" rel="tooltip" class="btn btn-info" data-original-title="" title="">
-			                                            <i class="material-icons">person</i>
-			                                        </button>
-			                                        <button type="button" rel="tooltip" class="btn btn-success" data-original-title="" title="">
-			                                            <i class="material-icons">edit</i>
-			                                        </button>
-			                                        <button type="button" rel="tooltip" class="btn btn-danger" data-original-title="" title="">
-			                                            <i class="material-icons">close</i>
-			                                        </button>
-			                                    </td>
-			                                </tr>
-			                                <tr>
-
-			                                    <td class="text-center">2</td>
-			                                    <td>John Doe</td>
-			                                    <td>Design</td>
-			                                    <td>2012</td>
-			                                    <td class="text-right">€ 89,241</td>
-			                                    <td class="td-actions text-right">
-			                                        <button type="button" rel="tooltip" class="btn btn-info btn-round" data-original-title="" title="">
-			                                            <i class="material-icons">person</i>
-			                                        </button>
-			                                        <button type="button" rel="tooltip" class="btn btn-success btn-round" data-original-title="" title="">
-			                                            <i class="material-icons">edit</i>
-			                                        </button>
-			                                        <button type="button" rel="tooltip" class="btn btn-danger btn-round" data-original-title="" title="">
-			                                            <i class="material-icons">close</i>
-			                                        </button>
-			                                    </td>
-			                                </tr>
-			                                <tr>
-			                                    <td class="text-center">3</td>
-			                                    <td>Alex Mike</td>
-			                                    <td>Design</td>
-			                                    <td>2010</td>
-			                                    <td class="text-right">€ 92,144</td>
-			                                    <td class="td-actions text-right">
-			                                        <button type="button" rel="tooltip" class="btn btn-info btn-simple" data-original-title="" title="">
-			                                            <i class="material-icons">person</i>
-			                                        </button>
-			                                        <button type="button" rel="tooltip" class="btn btn-success btn-simple" data-original-title="" title="">
-			                                            <i class="material-icons">edit</i>
-			                                        </button>
-			                                        <button type="button" rel="tooltip" class="btn btn-danger btn-simple" data-original-title="" title="">
-			                                            <i class="material-icons">close</i>
-			                                        </button>
-			                                    </td>
-			                                </tr>
-			                                <tr>
-			                                    <td class="text-center">4</td>
-			                                    <td>Mike Monday</td>
-			                                    <td>Marketing</td>
-			                                    <td>2013</td>
-			                                    <td class="text-right">€ 49,990</td>
-			                                    <td class="td-actions text-right">
-			                                        <button type="button" rel="tooltip" class="btn btn-info btn-round" data-original-title="" title="">
-			                                            <i class="material-icons">person</i>
-			                                        </button>
-			                                        <button type="button" rel="tooltip" class="btn btn-success btn-round" data-original-title="" title="">
-			                                            <i class="material-icons">edit</i>
-			                                        </button>
-			                                        <button type="button" rel="tooltip" class="btn btn-danger btn-round" data-original-title="" title="">
-			                                            <i class="material-icons">close</i>
-			                                        </button>
-			                                    </td>
-			                                </tr>
-			                                <tr>
-			                                    <td class="text-center">5</td>
-			                                    <td>Paul Dickens</td>
-			                                    <td>Communication</td>
-			                                    <td>2015</td>
-			                                    <td class="text-right">€ 69,201</td>
+			                                <tr v-for="(user, index) in users" :key="user.id" >
+			                                    <td v-text="user.id"></td>
+			                                    <td v-text="user.fullname"></td>
+			                                    <td v-text="user.celular"></td>
+			                                    <td v-text="user.email"></td>
+			                                    <td>{{ user.created_at | myDate }}</td>
 			                                    <td class="td-actions text-right">
 			                                        <button type="button" rel="tooltip" class="btn btn-info" data-original-title="" title="">
 			                                            <i class="material-icons">person</i>
@@ -149,7 +76,7 @@
 	                	<div class="row">
 	                		<div class="media media-post">
 								<div class="row">
-        							<form @submit.prevent="createUser" >
+        							<form @submit.prevent="createUser" enctype="multipart/form-data">
 									<div class="col-md-4 text-center">
 										<h4><b>Foto de perfil</b></h4>
 										<div class="fileinput fileinput-new text-center" data-provides="fileinput">
@@ -161,7 +88,7 @@
 												<span class="btn btn-raised btn-round btn-rose btn-file">
 													<span class="fileinput-new">Añadir Imagen</span>
 													<span class="fileinput-exists">Cambiar</span>
-													<input type="file" name="foto">
+ 												 	<input type="file" name="foto"  >
 												</span>
 												<br>
 												<a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Eliminar</a>
@@ -188,11 +115,12 @@
 				                                        <span class="input-group-addon">
 				                                            <i class="material-icons">face</i>
 				                                        </span>
-				                                        <div class="form-group label-floating is-empty">
+				                                        <div class="form-group label-floating is-empty" :class="{ 'has-error is-focused': form.errors.has('fullname') }">
 					                                    	<label class="control-label">Nombre completo:</label>
-					                                    	<input v-model.trim="form.fullname" type="text" class="form-control" name="fullname" :class="{ 'is-invalid': form.errors.has('fullname') }">
-					                                    	<span class="material-input"></span>
-					                                    	<has-error :form="form" field="fullname"></has-error>
+					                                    	<input v-model.trim="form.fullname" type="text" class="form-control" name="fullname" >
+					                                    	<span class="material-input">
+					                                    		<has-error :form="form" field="fullname"></has-error>
+					                                    	</span>
 					                                    </div>
 				                                    </div>
         		                                </div>
@@ -201,9 +129,9 @@
 				                                        <span class="input-group-addon">
 				                                            <i class="material-icons">stay_current_portrait</i>
 				                                        </span>
-				                                        <div class="form-group label-floating is-empty">
+				                                        <div class="form-group label-floating is-empty" :class="{ 'has-error is-focused': form.errors.has('celular') }">
 					                                    	<label class="control-label">Celular:</label>
-					                                    	<input v-model.number="form.celular" type="text" class="form-control" name="celular" :class="{ 'is-invalid': form.errors.has('celular') }">
+					                                    	<input v-model.number="form.celular" type="text" class="form-control" name="celular">
 					                                    	<span class="material-input"></span>
 					                                    	<has-error :form="form" field="celular"></has-error>
 					                                    </div>
@@ -216,11 +144,10 @@
 				                                        <span class="input-group-addon">
 				                                            <i class="material-icons">email</i>
 				                                        </span>
-				                                        <div class="form-group label-floating is-empty">
+				                                        <div class="form-group label-floating is-empty" >
 					                                    	<label class="control-label">Correo electrónico:</label>
-					                                    	<input v-model.trim="form.email" type="text" class="form-control" name="email" :class="{ 'is-invalid': form.errors.has('email') }">
+					                                    	<input v-model.trim="form.email" type="text" class="form-control" name="email">
 					                                    	<span class="material-input"></span>
-					                                    	<has-error :form="form" field="email"></has-error>
 					                                    </div>
 				                                    </div>
         		                                </div>
@@ -229,9 +156,9 @@
 				                                        <span class="input-group-addon">
 				                                            <i class="material-icons">room</i>
 				                                        </span>
-				                                        <div class="form-group label-floating is-empty">
+				                                        <div class="form-group label-floating is-empty" :class="{ 'has-error is-focused': form.errors.has('formatted_address') }">
 					                                    	<label class="control-label">Ubicación:</label>
-					                                    	<input  v-model.number="form.formatted_address" type="text" class="form-control" name="formatted_address" :class="{ 'is-invalid': form.errors.has('formatted_address') }">
+					                                    	<input  v-model.number="form.formatted_address" type="text" class="form-control" name="formatted_address" >
 					                                    	<span class="material-input"></span>
 					                                    	<has-error :form="form" field="formatted_address"></has-error>
 					                                    </div>
@@ -244,9 +171,9 @@
 				                                        <span class="input-group-addon">
 				                                            <i class="material-icons">lock_outline</i>
 				                                        </span>
-				                                        <div class="form-group label-floating is-empty">
+				                                        <div class="form-group label-floating is-empty" :class="{ 'has-error is-focused': form.errors.has('password') }">
 					                                    	<label class="control-label">Contraseña:</label>
-					                                    	<input v-model.trim="form.password" type="password" class="form-control" name="password" :class="{ 'is-invalid': form.errors.has('password') }">
+					                                    	<input v-model.trim="form.password" type="password" class="form-control" name="password">
 					                                    	<span class="material-input"></span>
 					                                    	<has-error :form="form" field="password"></has-error>
 					                                    </div>
@@ -257,9 +184,9 @@
 				                                        <span class="input-group-addon">
 				                                            <i class="material-icons">account_balance_wallet</i>
 				                                        </span>
-				                                        <div class="form-group label-floating is-empty">
+				                                        <div class="form-group label-floating is-empty" :class="{ 'has-error is-focused': form.errors.has('password_confirmation') }">
 					                                    	<label class="control-label">Confirmar contraseña:</label>
-					                                    	<input v-model.trim="form.password_confirmation" type="password" class="form-control" name="password_confirmation" :class="{ 'is-invalid': form.errors.has('password_confirmation') }">
+					                                    	<input v-model.trim="form.password_confirmation" type="password" class="form-control" name="password_confirmation">
 					                                    	<span class="material-input"></span>
 					                                    	<has-error :form="form" field="password_confirmation"></has-error>
 					                                    </div>
@@ -267,9 +194,9 @@
         		                            	</div>
         		                            </div>
         		                            <div class="media-footer">
-												<button class="btn btn-rose btn-round">
-													<i class="material-icons">person_pin</i> GUARDAR
-
+												<button class="btn btn-rose btn-round" type="submit">
+													<i class="material-icons">person_pin</i>
+													GUARDAR
 												</button>
 				                            </div>
         	                        	</div>
@@ -289,9 +216,8 @@
     export default {
         data() {
             return {
-                users : {},
+                users : [],
                 form: new Form({
-                    id:'',
                     fullname: '',
                     celular: '',
                     email: '',
@@ -303,14 +229,40 @@
             }
         },
         methods: {
-        	 createUser(){
+        	async loadUsers(){
+                //axios.get('api/user').then(({data}) => (this.users = data));
 
-                this.form.post(`/register`)
+                const  resul = await axios.get('api/user');
+				//console.log(resul);
+				this.users = resul.data.data;
+				//console.log(this.users);
+
+            },
+        	createUser(){
+        		this.$Progress.start();
+                this.form.post('api/user')
                 .then(()=>{
-                	this.form.reset();
-                })
 
+                	$('#userModal').modal('hide')
+                	swal.fire({
+                        type: 'success',
+                        title: 'Usuario creado correctamente',
+                        showConfirmButton: false,
+  						timer: 1500
+                    })
+                    this.form.reset();
+                	this.$Progress.finish()
+
+                }).catch(error => {
+
+                	this.$Progress.fail()
+                    console.log(error)
+
+                })
 	        },
+        },
+        created(){
+        	this.loadUsers();
         }
     };
 </script>
