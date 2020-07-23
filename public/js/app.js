@@ -2825,11 +2825,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      editmode: false,
       users: [],
       form: new Form({
+        id: '',
         fullname: '',
         celular: '',
         email: '',
@@ -2841,8 +2852,56 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   methods: {
-    loadUsers: function loadUsers() {
+    updateUser: function updateUser(id) {
       var _this = this;
+
+      this.$Progress.start();
+      this.form.put('api/user/' + this.form.id).then(function () {
+        $('#userModal').modal('hide');
+        swal.fire('Actualizado!', 'La información del usuario fue actualizada.', 'success');
+
+        _this.$Progress.finish();
+
+        Fire.$emit('AfterCreate');
+      })["catch"](function () {
+        _this.$Progress.fail();
+      });
+    },
+    editModal: function editModal(user) {
+      this.editmode = true;
+      this.form.reset();
+      $('#userModal').modal('show');
+      this.form.fill(user);
+    },
+    newModal: function newModal() {
+      this.editmode = false;
+      this.form.reset();
+      $('#userModal').modal('show');
+    },
+    deleteUser: function deleteUser(id) {
+      var _this2 = this;
+
+      swal.fire({
+        title: '¿Estás seguro?',
+        text: "No podrás revertir esto!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, eliminar!'
+      }).then(function (result) {
+        if (result.value) {
+          _this2.form["delete"]('api/user/' + id).then(function () {
+            swal.fire('Deleted!', 'El usuario fue eliminado.', 'success');
+            Fire.$emit('AfterCreate');
+          })["catch"](function () {
+            swal.fire('Failed!', 'Revisa algo salió mal.', 'warning');
+          });
+        }
+      });
+    },
+    loadUsers: function loadUsers() {
+      var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         var resul;
@@ -2856,7 +2915,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 2:
                 resul = _context.sent;
                 //console.log(resul);
-                _this.users = resul.data.data; //console.log(this.users);
+                _this3.users = resul.data.data; //console.log(this.users);
 
               case 4:
               case "end":
@@ -2867,30 +2926,36 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     createUser: function createUser() {
-      var _this2 = this;
+      var _this4 = this;
 
       this.$Progress.start();
       this.form.post('api/user').then(function () {
+        Fire.$emit('AfterCreate');
         $('#userModal').modal('hide');
         swal.fire({
           type: 'success',
           title: 'Usuario creado correctamente',
           showConfirmButton: false,
-          timer: 1500
+          timer: 2000
         });
 
-        _this2.form.reset();
+        _this4.form.reset();
 
-        _this2.$Progress.finish();
+        _this4.$Progress.finish();
       })["catch"](function (error) {
-        _this2.$Progress.fail();
+        _this4.$Progress.fail();
 
         console.log(error);
       });
     }
   },
   created: function created() {
+    var _this5 = this;
+
     this.loadUsers();
+    Fire.$on('AfterCreate', function () {
+      _this5.loadUsers();
+    });
   }
 });
 
@@ -64173,13 +64238,24 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "card-content" }, [
-            _vm._m(1),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-raised btn-round btn-rose",
+                on: { click: _vm.newModal }
+              },
+              [
+                _c("i", { staticClass: "material-icons" }, [_vm._v("person")]),
+                _vm._v("\n\t\t\t\t\t\t\t\tNuevo Usuario\n\t\t\t\t\t\t\t"),
+                _c("div", { staticClass: "ripple-container" })
+              ]
+            ),
             _vm._v(" "),
             _c("div", { staticClass: "tab-content text-center" }, [
               _c("div", { staticClass: "tab-pane active" }, [
                 _c("div", { staticClass: "table-responsive" }, [
                   _c("table", { staticClass: "table" }, [
-                    _vm._m(2),
+                    _vm._m(1),
                     _vm._v(" "),
                     _c(
                       "tbody",
@@ -64205,7 +64281,54 @@ var render = function() {
                             _vm._v(_vm._s(_vm._f("myDate")(user.created_at)))
                           ]),
                           _vm._v(" "),
-                          _vm._m(3, true)
+                          _c("td", { staticClass: "td-actions text-right" }, [
+                            _vm._m(2, true),
+                            _vm._v(" "),
+                            _c(
+                              "a",
+                              {
+                                staticClass: "btn btn-success",
+                                attrs: {
+                                  href: "#",
+                                  rel: "tooltip",
+                                  "data-original-title": "",
+                                  title: "Editar Usuario"
+                                },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.editModal(user)
+                                  }
+                                }
+                              },
+                              [
+                                _c("i", { staticClass: "material-icons" }, [
+                                  _vm._v("edit")
+                                ])
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "a",
+                              {
+                                staticClass: "btn btn-danger",
+                                attrs: {
+                                  href: "#",
+                                  "data-original-title": "",
+                                  title: "Eliminar usuario"
+                                },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.deleteUser(user.id)
+                                  }
+                                }
+                              },
+                              [
+                                _c("i", { staticClass: "material-icons" }, [
+                                  _vm._v("close")
+                                ])
+                              ]
+                            )
+                          ])
                         ])
                       }),
                       0
@@ -64234,7 +64357,43 @@ var render = function() {
       [
         _c("div", { staticClass: "modal-dialog modal-lg" }, [
           _c("div", { staticClass: "modal-content" }, [
-            _vm._m(4),
+            _c("div", { staticClass: "modal-header" }, [
+              _vm._m(3),
+              _vm._v(" "),
+              _c(
+                "h2",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: !_vm.editmode,
+                      expression: "!editmode"
+                    }
+                  ],
+                  staticClass: "modal-title card-title text-center",
+                  attrs: { id: "myModalLabel" }
+                },
+                [_vm._v("NUEVO USUARIO")]
+              ),
+              _vm._v(" "),
+              _c(
+                "h2",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.editmode,
+                      expression: "editmode"
+                    }
+                  ],
+                  staticClass: "modal-title card-title text-center",
+                  attrs: { id: "myModalLabel" }
+                },
+                [_vm._v("EDITAR USUARIO")]
+              )
+            ]),
             _vm._v(" "),
             _c("div", { staticClass: "modal-body" }, [
               _c("div", { staticClass: "row" }, [
@@ -64247,19 +64406,19 @@ var render = function() {
                         on: {
                           submit: function($event) {
                             $event.preventDefault()
-                            return _vm.createUser($event)
+                            _vm.editmode ? _vm.updateUser() : _vm.createUser()
                           }
                         }
                       },
                       [
-                        _vm._m(5),
+                        _vm._m(4),
                         _vm._v(" "),
                         _c("div", { staticClass: "col-md-8 text-center" }, [
                           _c("div", { staticClass: "media-body" }, [
                             _c("div", { staticClass: "row" }, [
                               _c("div", { staticClass: "col-md-6" }, [
                                 _c("div", { staticClass: "input-group" }, [
-                                  _vm._m(6),
+                                  _vm._m(5),
                                   _vm._v(" "),
                                   _c(
                                     "div",
@@ -64332,7 +64491,7 @@ var render = function() {
                               _vm._v(" "),
                               _c("div", { staticClass: "col-md-6" }, [
                                 _c("div", { staticClass: "input-group" }, [
-                                  _vm._m(7),
+                                  _vm._m(6),
                                   _vm._v(" "),
                                   _c(
                                     "div",
@@ -64405,7 +64564,7 @@ var render = function() {
                             _c("div", { staticClass: "row" }, [
                               _c("div", { staticClass: "col-md-6" }, [
                                 _c("div", { staticClass: "input-group" }, [
-                                  _vm._m(8),
+                                  _vm._m(7),
                                   _vm._v(" "),
                                   _c(
                                     "div",
@@ -64460,7 +64619,7 @@ var render = function() {
                               _vm._v(" "),
                               _c("div", { staticClass: "col-md-6" }, [
                                 _c("div", { staticClass: "input-group" }, [
-                                  _vm._m(9),
+                                  _vm._m(8),
                                   _vm._v(" "),
                                   _c(
                                     "div",
@@ -64536,7 +64695,7 @@ var render = function() {
                             _c("div", { staticClass: "row" }, [
                               _c("div", { staticClass: "col-md-6" }, [
                                 _c("div", { staticClass: "input-group" }, [
-                                  _vm._m(10),
+                                  _vm._m(9),
                                   _vm._v(" "),
                                   _c(
                                     "div",
@@ -64607,7 +64766,7 @@ var render = function() {
                               _vm._v(" "),
                               _c("div", { staticClass: "col-md-6" }, [
                                 _c("div", { staticClass: "input-group" }, [
-                                  _vm._m(11),
+                                  _vm._m(10),
                                   _vm._v(" "),
                                   _c(
                                     "div",
@@ -64681,7 +64840,57 @@ var render = function() {
                               ])
                             ]),
                             _vm._v(" "),
-                            _vm._m(12)
+                            _c("div", { staticClass: "media-footer" }, [
+                              _vm._m(11),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  directives: [
+                                    {
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value: _vm.editmode,
+                                      expression: "editmode"
+                                    }
+                                  ],
+                                  staticClass: "btn btn-primary btn-round",
+                                  attrs: { type: "submit" }
+                                },
+                                [
+                                  _c("i", { staticClass: "material-icons" }, [
+                                    _vm._v("edit")
+                                  ]),
+                                  _vm._v(
+                                    "\n\t\t\t\t\t\t\t\t\t\t\t\t\tACTUALIZAR\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  directives: [
+                                    {
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value: !_vm.editmode,
+                                      expression: "!editmode"
+                                    }
+                                  ],
+                                  staticClass: "btn btn-rose btn-round",
+                                  attrs: { type: "submit" }
+                                },
+                                [
+                                  _c("i", { staticClass: "material-icons" }, [
+                                    _vm._v("person_pin")
+                                  ]),
+                                  _vm._v(
+                                    "\n\t\t\t\t\t\t\t\t\t\t\t\t\tGUARDAR\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                                  )
+                                ]
+                              )
+                            ])
                           ])
                         ])
                       ]
@@ -64726,23 +64935,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "btn btn-raised btn-round btn-rose  ",
-        attrs: { "data-toggle": "modal", "data-target": "#userModal" }
-      },
-      [
-        _c("i", { staticClass: "material-icons" }, [_vm._v("person")]),
-        _vm._v("\n\t\t\t\t\t\t\t\tNuevo Usuario\n\t\t\t\t\t\t\t"),
-        _c("div", { staticClass: "ripple-container" })
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", { staticClass: "almuerzo" }, [
         _c("th", { staticClass: "text-center" }, [_c("b", [_vm._v("#")])]),
@@ -64767,77 +64959,36 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("td", { staticClass: "td-actions text-right" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-info",
-          attrs: {
-            type: "button",
-            rel: "tooltip",
-            "data-original-title": "",
-            title: ""
-          }
-        },
-        [_c("i", { staticClass: "material-icons" }, [_vm._v("person")])]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-success",
-          attrs: {
-            type: "button",
-            rel: "tooltip",
-            "data-original-title": "",
-            title: ""
-          }
-        },
-        [_c("i", { staticClass: "material-icons" }, [_vm._v("edit")])]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-danger",
-          attrs: {
-            type: "button",
-            rel: "tooltip",
-            "data-original-title": "",
-            title: ""
-          }
-        },
-        [_c("i", { staticClass: "material-icons" }, [_vm._v("close")])]
-      )
-    ])
+    return _c(
+      "button",
+      {
+        staticClass: "btn btn-info",
+        attrs: {
+          type: "button",
+          rel: "tooltip",
+          "data-original-title": "",
+          title: ""
+        }
+      },
+      [_c("i", { staticClass: "material-icons" }, [_vm._v("person")])]
+    )
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "aria-hidden": "true"
-          }
-        },
-        [_c("i", { staticClass: "material-icons" }, [_vm._v("clear")])]
-      ),
-      _vm._v(" "),
-      _c(
-        "h2",
-        {
-          staticClass: "modal-title card-title text-center",
-          attrs: { id: "myModalLabel" }
-        },
-        [_vm._v("NUEVO USUARIO")]
-      )
-    ])
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "modal",
+          "aria-hidden": "true"
+        }
+      },
+      [_c("i", { staticClass: "material-icons" }, [_vm._v("clear")])]
+    )
   },
   function() {
     var _vm = this
@@ -64987,18 +65138,17 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "media-footer" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-rose btn-round", attrs: { type: "submit" } },
-        [
-          _c("i", { staticClass: "material-icons" }, [_vm._v("person_pin")]),
-          _vm._v(
-            "\n\t\t\t\t\t\t\t\t\t\t\t\t\tGUARDAR\n\t\t\t\t\t\t\t\t\t\t\t\t"
-          )
-        ]
-      )
-    ])
+    return _c(
+      "button",
+      {
+        staticClass: "btn btn-default btn-round",
+        attrs: { type: "botton", "data-dismiss": "modal" }
+      },
+      [
+        _c("i", { staticClass: "material-icons" }, [_vm._v("close")]),
+        _vm._v("\n\t\t\t\t\t\t\t\t\t\t\t\t\tCANCELAR\n\t\t\t\t\t\t\t\t\t\t\t\t")
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -80305,6 +80455,7 @@ Vue.filter('upText', function (text) {
 Vue.filter('myDate', function (created) {
   return moment__WEBPACK_IMPORTED_MODULE_0___default()(created).locale('es').format('MMMM Do YYYY, h:mm a');
 });
+window.Fire = new Vue();
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
